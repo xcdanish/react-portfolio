@@ -2,6 +2,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { Award, Code, Coffee, Users } from "lucide-react";
+import { FloatingShapes } from "./Animation";
 
 const stats = [
   { icon: Code, label: "Projects Completed", value: "50+" },
@@ -17,7 +18,8 @@ export const About: React.FC = () => {
   });
 
   return (
-    <section id="about" className="py-20 bg-gray-50 dark:bg-gray-900">
+    <section id="about" className="py-20 relative bg-white dark:bg-black">
+      <FloatingShapes />
       <div className="container mx-auto px-4">
         <motion.div
           ref={ref}
@@ -56,32 +58,45 @@ export const About: React.FC = () => {
                 Passionate MERN Stack Developer
               </h3>
               <p className="text-gray-600 dark:text-gray-300 mb-6">
-                Highly skilled <strong>MERN Stack Developer</strong> with <strong>3+ years</strong> of experience
-                in building <strong>scalable web applications</strong>, dynamic UIs, and robust
-                APIs using modern JavaScript frameworks. Proficient in <strong>React.js,
-                  Next.js, Node.js, Express.js, MongoDB, and Redux</strong>, with expertise
-                in <strong>React Hooks, Context API,</strong> and <strong>component-driven architecture</strong>.
+                Highly skilled <strong>MERN Stack Developer</strong> with{" "}
+                <strong>3+ years</strong> of experience in building{" "}
+                <strong>scalable web applications</strong>, dynamic UIs, and
+                robust APIs using modern JavaScript frameworks. Proficient in{" "}
+                <strong>
+                  React.js, Next.js, Node.js, Express.js, MongoDB, and Redux
+                </strong>
+                , with expertise in <strong>React Hooks, Context API,</strong>{" "}
+                and <strong>component-driven architecture</strong>.
               </p>
               <p className="text-gray-600 dark:text-gray-300 mb-6">
-                Strong frontend development skills with <strong>HTML, CSS, JavaScript,
-                  TypeScript, Bootstrap, Tailwind, Material UI,</strong> and <strong>SCSS</strong>, ensuring
-                responsive and user-friendly designs. Experienced in backend
-                development, <strong>API integration, authentication (JWT, Firebase),</strong>
+                Strong frontend development skills with{" "}
+                <strong>
+                  HTML, CSS, JavaScript, TypeScript, Bootstrap, Tailwind,
+                  Material UI,
+                </strong>{" "}
+                and <strong>SCSS</strong>, ensuring responsive and user-friendly
+                designs. Experienced in backend development,{" "}
+                <strong>
+                  API integration, authentication (JWT, Firebase),
+                </strong>
                 and database management.
               </p>
               <p className="text-gray-600 dark:text-gray-300 mb-6">
-                Skilled in <strong>cloud services (AWS, Firebase)</strong> and DevOps tools, with
-                hands-on experience in <strong>Git, JIRA,</strong> and <strong>Trello</strong> for agile
-                development. Adept at delivering <strong>end-to-end solutions</strong> across
-                domains like <strong>e-commerce, CRM,</strong> and <strong>large-scale platforms</strong>,
-                ensuring high performance and seamless user experience.
+                Skilled in <strong>cloud services (AWS, Firebase)</strong> and
+                DevOps tools, with hands-on experience in{" "}
+                <strong>Git, JIRA,</strong> and <strong>Trello</strong> for
+                agile development. Adept at delivering{" "}
+                <strong>end-to-end solutions</strong> across domains like{" "}
+                <strong>e-commerce, CRM,</strong> and{" "}
+                <strong>large-scale platforms</strong>, ensuring high
+                performance and seamless user experience.
               </p>
               <p className="text-gray-600 dark:text-gray-300 mb-8">
                 I'm constantly learning and adapting to new technologies,
-                ensuring that I stay at the forefront of <strong>web development trends</strong>
+                ensuring that I stay at the forefront of{" "}
+                <strong>web development trends</strong>
                 and best practices.
               </p>
-
 
               {/* <div className="grid grid-cols-2 gap-6">
                 {stats.map((stat, index) => (

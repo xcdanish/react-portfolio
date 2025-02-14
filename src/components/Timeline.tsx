@@ -2,6 +2,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { Briefcase, GraduationCap } from "lucide-react";
+import { FloatingShapes } from "./Animation";
 
 const timelineItems = [
   {
@@ -65,13 +66,14 @@ const timelineItems = [
 ];
 
 export const Timeline: React.FC = () => {
-  const [ref, inView] = useInView({
-    threshold: 0.1,
-    triggerOnce: true,
-  });
+  const [ref, inView] = useInView({ threshold: 0.1, triggerOnce: true });
 
   return (
-    <section id="timeline" className="py-20 bg-gray-50 dark:bg-gray-900">
+    <section
+      id="timeline"
+      className="py-20 relative overflow-hidden bg-white dark:bg-black dark:bg-opacity-80"
+    >
+      <FloatingShapes />
       <div className="container mx-auto px-4">
         <motion.div
           ref={ref}
@@ -80,13 +82,13 @@ export const Timeline: React.FC = () => {
           transition={{ duration: 0.6 }}
           className="max-w-4xl mx-auto"
         >
-          <h2 className="text-4xl font-bold text-center mb-12 bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
+          <h2 className="text-4xl font-bold text-center mb-12 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-clip-text text-transparent">
             Experience & Education
           </h2>
 
           <div className="relative">
-            {/* Timeline line with gradient animation */}
-            <div className="absolute left-0 md:left-1/2 transform md:-translate-x-px top-0 h-full w-0.5 bg-gradient-to-b from-blue-400 via-purple-400 to-pink-400 animate-gradient-slow" />
+            {/* Timeline Line */}
+            <div className="absolute left-0 md:left-1/2 transform md:-translate-x-px top-0 h-full w-1 bg-gradient-to-b from-blue-400 via-purple-400 to-pink-400 animate-gradient-slow" />
 
             {timelineItems.map((item, index) => (
               <motion.div
@@ -98,14 +100,14 @@ export const Timeline: React.FC = () => {
                   index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
                 }`}
               >
-                {/* Timeline dot with pulse animation */}
+                {/* Timeline Dot */}
                 <motion.div
-                  className="absolute left-0 md:left-1/2 transform -translate-x-1/2 w-4 h-4 bg-gradient-to-r from-blue-400 to-purple-400 rounded-full"
+                  className="absolute left-0 md:left-1/2 transform -translate-x-1/2 w-6 h-6 bg-gradient-to-r from-blue-400 to-purple-400 rounded-full"
                   whileHover={{ scale: 1.5 }}
                   animate={{
                     boxShadow: [
                       "0 0 0 0 rgba(59, 130, 246, 0.5)",
-                      "0 0 0 10px rgba(59, 130, 246, 0)",
+                      "0 0 0 12px rgba(59, 130, 246, 0)",
                     ],
                   }}
                   transition={{
@@ -115,7 +117,7 @@ export const Timeline: React.FC = () => {
                   }}
                 />
 
-                {/* Content */}
+                {/* Timeline Card */}
                 <div
                   className={`flex-1 ${
                     index % 2 === 0 ? "md:pr-12" : "md:pl-12"
@@ -123,25 +125,27 @@ export const Timeline: React.FC = () => {
                 >
                   <motion.div
                     className="relative group"
-                    whileHover={{ scale: 1.02 }}
+                    whileHover={{ scale: 1.03 }}
                     transition={{ duration: 0.3 }}
                   >
-                    {/* Gradient border animation */}
-                    <div className="absolute -inset-0.5 bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl opacity-75 group-hover:opacity-100 blur transition duration-300" />
-                    <div className="relative bg-gray-50 dark:bg-gray-800 p-6 rounded-xl">
+                    {/* Gradient Background Only on Hover */}
+                    <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-500 opacity-0 group-hover:opacity-80 blur-lg rounded-xl transition-opacity duration-300" />
+
+                    {/* Crystal Transparent Glassmorphism Background */}
+                    <div className="relative backdrop-blur-xl bg-white/20 dark:bg-gray-900/20 p-6 rounded-xl shadow-lg border border-white/30 dark:border-gray-800">
                       <div className="flex items-center mb-2">
-                        <item.icon className="w-5 h-5 text-blue-400 group-hover:text-purple-400 transition-colors duration-300" />
-                        <span className="ml-2 text-sm text-blue-400 group-hover:text-purple-400 transition-colors duration-300 font-semibold">
+                        <item.icon className="w-6 h-6 text-blue-500 dark:text-purple-400 group-hover:text-purple-500 transition-colors duration-300" />
+                        <span className="ml-2 text-sm text-gray-800 dark:text-gray-300 font-semibold transition-colors duration-300">
                           {item.date}
                         </span>
                       </div>
-                      <h3 className="text-xl font-semibold text-gray-600 dark:text-gray-300 mb-1">
+                      <h3 className="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-1">
                         {item.title}
                       </h3>
-                      <p className="text-gray-600 dark:text-gray-300  mb-2">
+                      <p className="text-gray-700 dark:text-gray-400 mb-2">
                         {item.company}
                       </p>
-                      <p className="text-gray-600 dark:text-gray-300 ">
+                      <p className="text-gray-600 dark:text-gray-300">
                         {item.description}
                       </p>
                     </div>
