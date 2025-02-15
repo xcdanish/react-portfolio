@@ -2,8 +2,9 @@ import React from "react";
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { Code2, Server, Layout, Palette, Blocks, Workflow } from "lucide-react";
+import { getThemeColors } from "../App";
 
-const shapes = ["circle", "square", "triangle", "star"];
+// const shapes = ["circle", "square", "triangle", "star"];
 
 const skillCategories = [
   {
@@ -54,17 +55,20 @@ const skillCategories = [
     borderStyle: "border-cyan-500", // Cyan as final selection
   },
 ];
-
-export const Skills: React.FC = () => {
+interface SkillsProps {
+  themeColor: string;
+}
+export const Skills: React.FC<SkillsProps> = ({ themeColor }) => {
+  const colors = getThemeColors(themeColor);
   const [ref, inView] = useInView({ threshold: 0.2, triggerOnce: true });
 
   return (
     <section
       id="skills"
-      className="relative py-20 overflow-hidden bg-white dark:bg-black dark:bg-opacity-80"
+      className="relative py-20 overflow-hidden bg-white dark:bg-black bg-opacity-50 dark:bg-opacity-50"
     >
       {/* Animated Shapes */}
-      <div className="absolute inset-0 overflow-hidden">
+      {/* <div className="absolute inset-0 overflow-hidden">
         {[...Array(10)].map((_, i) => {
           const shapeType = shapes[i % shapes.length];
           return (
@@ -93,7 +97,7 @@ export const Skills: React.FC = () => {
             />
           );
         })}
-      </div>
+      </div> */}
 
       <div className="container mx-auto px-4 relative z-10">
         <motion.div
@@ -103,7 +107,9 @@ export const Skills: React.FC = () => {
           transition={{ duration: 0.8 }}
           className="max-w-6xl mx-auto"
         >
-          <h2 className="text-4xl font-bold text-center mb-12 bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
+          <h2
+            className={`text-4xl font-bold text-center mb-8 bg-gradient-to-r ${colors.primary} bg-clip-text text-transparent`}
+          >
             Skills & Expertise
           </h2>
 
@@ -123,7 +129,7 @@ export const Skills: React.FC = () => {
                     >
                       <category.icon className="w-8 h-8 text-white" />
                     </div>
-                    <h3 className="text-2xl font-semibold text-white">
+                    <h3 className={`text-2xl font-semibold ${colors.subtext}`}>
                       {category.title}
                     </h3>
                   </div>

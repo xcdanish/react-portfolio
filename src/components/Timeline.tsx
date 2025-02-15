@@ -2,7 +2,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { Briefcase, GraduationCap } from "lucide-react";
-import { FloatingShapes } from "./Animation";
+import { getThemeColors } from "../App";
 
 const timelineItems = [
   {
@@ -65,15 +65,18 @@ const timelineItems = [
   },
 ];
 
-export const Timeline: React.FC = () => {
+interface TimelineProps {
+  themeColor: string;
+}
+export const Timeline: React.FC<TimelineProps> = ({ themeColor }) => {
+  const colors = getThemeColors(themeColor);
   const [ref, inView] = useInView({ threshold: 0.1, triggerOnce: true });
 
   return (
     <section
       id="timeline"
-      className="py-20 relative overflow-hidden bg-white dark:bg-black dark:bg-opacity-80"
+      className="relative py-20 overflow-hidden bg-white dark:bg-black bg-opacity-50 dark:bg-opacity-50"
     >
-      <FloatingShapes />
       <div className="container mx-auto px-4">
         <motion.div
           ref={ref}
@@ -82,7 +85,9 @@ export const Timeline: React.FC = () => {
           transition={{ duration: 0.6 }}
           className="max-w-4xl mx-auto"
         >
-          <h2 className="text-4xl font-bold text-center mb-12 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-clip-text text-transparent">
+          <h2
+            className={`text-4xl font-bold text-center mb-8 bg-gradient-to-r ${colors.primary} bg-clip-text text-transparent`}
+          >
             Experience & Education
           </h2>
 

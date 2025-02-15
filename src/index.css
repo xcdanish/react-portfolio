@@ -8,11 +8,11 @@
   }
 
   html {
-    @apply scroll-smooth;
+    @apply scroll-smooth overflow-x-hidden;
   }
 
   body {
-    @apply antialiased;
+    @apply antialiased bg-gradient-to-b from-gray-50/80 to-white/80 dark:from-gray-900/80 dark:to-black/80 overflow-x-hidden;
   }
 }
 
@@ -37,38 +37,18 @@
   @apply bg-gradient-to-b from-blue-500 via-purple-500 to-pink-500;
 }
 
-/* Gradient animations */
-@property --gradient-angle {
-  syntax: '<angle>';
-  initial-value: 0deg;
-  inherits: false;
+/* Custom shape clips */
+.clip-triangle {
+  clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
 }
 
-@keyframes gradient-rotate {
-  0% {
-    --gradient-angle: 0deg;
-  }
-  100% {
-    --gradient-angle: 360deg;
-  }
+.clip-pentagon {
+  clip-path: polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%);
 }
 
-.animate-gradient-bg {
-  animation: gradient-rotate 5s linear infinite;
-}
-
-/* Gaming-style animations */
-@keyframes float {
-  0% {
-    transform: translateY(0) rotate(0deg);
-  }
-  100% {
-    transform: translateY(-20px) rotate(5deg);
-  }
-}
-
-.perspective-1000 {
-  perspective: 1000px;
+/* Glass effect */
+.glass-effect {
+  @apply backdrop-blur-lg bg-white/10 dark:bg-gray-900/10 border border-white/20 dark:border-gray-800/20;
 }
 
 /* Theme color transitions */
@@ -78,7 +58,7 @@
 
 /* Gradient text effect */
 .gradient-text {
-  @apply bg-gradient-to-r from-current via-purple-500 to-pink-500 bg-clip-text text-transparent;
+  @apply bg-gradient-to-r bg-clip-text text-transparent;
   background-size: 200% auto;
   animation: gradient 3s linear infinite;
 }
@@ -113,15 +93,11 @@
   background-size: 200% 200%;
 }
 
-@keyframes border-flow {
-  0% {
-    border-image-source: linear-gradient(0deg, var(--tw-gradient-stops));
-  }
-  100% {
-    border-image-source: linear-gradient(360deg, var(--tw-gradient-stops));
-  }
+/* Section styles */
+.section-wrapper {
+  @apply relative overflow-hidden;
 }
 
-.animate-border-flow {
-  animation: border-flow 3s linear infinite;
+.section-content {
+  @apply relative z-10;
 }

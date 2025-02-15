@@ -1,7 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
-import { FloatingShapes } from "./Animation";
+import { getThemeColors } from "../App";
 
 const projects = [
   {
@@ -87,16 +87,21 @@ const projects = [
     githubUrl: "#",
   },
 ];
-
-export const Projects: React.FC = () => {
+interface ProjectsProps {
+  themeColor: string;
+}
+export const Projects: React.FC<ProjectsProps> = ({ themeColor }) => {
+  const colors = getThemeColors(themeColor);
   const [ref, inView] = useInView({
     threshold: 0.1,
     triggerOnce: true,
   });
 
   return (
-    <section id="projects" className="py-20 relative bg-white dark:bg-black">
-      <FloatingShapes />
+    <section
+      id="projects"
+      className="relative py-20 overflow-hidden bg-white dark:bg-black bg-opacity-50 dark:bg-opacity-50"
+    >
       <div className="container mx-auto px-4">
         <motion.div
           ref={ref}
@@ -105,7 +110,9 @@ export const Projects: React.FC = () => {
           transition={{ duration: 0.6 }}
           className="max-w-6xl mx-auto"
         >
-          <h2 className="text-4xl font-bold text-center mb-12 bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400 bg-clip-text text-transparent">
+          <h2
+            className={`text-4xl font-bold text-center mb-8 bg-gradient-to-r ${colors.primary} bg-clip-text text-transparent`}
+          >
             Featured Projects
           </h2>
 

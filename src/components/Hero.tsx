@@ -90,7 +90,6 @@ export const Hero: React.FC = () => {
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(50,50,255,0.1),transparent_50%)] animate-pulse" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_20%,rgba(255,50,255,0.1),transparent_50%)] animate-pulse" />
         <div className="absolute inset-0" />
-        {/* <div className="absolute inset-0 bg-black/90" /> */}
       </div>
 
       {/* Floating orbs with enhanced animation */}
