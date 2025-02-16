@@ -1,7 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
-import { getThemeColors } from "../App";
+import { getThemeColors } from "../Theme/ThemeBox";
 
 interface AboutProps {
   themeColor: string;

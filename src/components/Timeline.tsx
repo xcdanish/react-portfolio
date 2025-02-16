@@ -2,7 +2,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { Briefcase, GraduationCap } from "lucide-react";
-import { getThemeColors } from "../App";
+import { getThemeColors } from "../Theme/ThemeBox";
 
 const timelineItems = [
   {

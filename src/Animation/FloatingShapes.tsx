@@ -1,39 +1,10 @@
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
+import { getThemeColors } from "../Theme/ThemeBox";
 
 interface FloatingShapesProps {
   themeColor: string;
 }
-
-const getThemeColors = (color: string) => {
-  const colors = {
-    blue: {
-      from: "from-blue-400",
-      to: "to-purple-800",
-      darkFrom: "dark:from-blue-500",
-      darkTo: "dark:to-purple-900",
-    },
-    green: {
-      from: "from-green-400",
-      to: "to-teal-600",
-      darkFrom: "dark:from-green-500",
-      darkTo: "dark:to-teal-900",
-    },
-    purple: {
-      from: "from-purple-400",
-      to: "to-pink-600",
-      darkFrom: "dark:from-purple-500",
-      darkTo: "dark:to-pink-900",
-    },
-    orange: {
-      from: "from-orange-400",
-      to: "to-red-600",
-      darkFrom: "dark:from-orange-500",
-      darkTo: "dark:to-red-900",
-    },
-  };
-  return colors[color as keyof typeof colors] || colors.blue;
-};
 
 export const FloatingShapes: React.FC<FloatingShapesProps> = ({
   themeColor,

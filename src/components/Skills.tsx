@@ -2,29 +2,24 @@ import React from "react";
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { Code2, Server, Layout, Palette, Blocks, Workflow } from "lucide-react";
-import { getThemeColors } from "../App";
+import { getThemeColors } from "../Theme/ThemeBox";
 
 // const shapes = ["circle", "square", "triangle", "star"];
 
 const skillCategories = [
   {
-    title: "Frontend Core",
+    title: "Frontend",
     icon: Layout,
-    skills: ["React.js", "JavaScript (ES6+)", "TypeScript", "HTML5"],
+    skills: [
+      "React.js",
+      "Next.js",
+      "HTML5",
+      "Framer Motion",
+      "TypeScript",
+      "JavaScript",
+    ],
     color: "from-blue-500 to-cyan-500",
     borderStyle: "border-cyan-500", // Picked cyan as a good border contrast
-  },
-  {
-    title: "Styling",
-    icon: Palette,
-    skills: [
-      "CSS / CSS3",
-      "Tailwind CSS",
-      "Bootstrap / ReactStrap",
-      "Material UI",
-    ],
-    color: "from-pink-500 to-rose-500",
-    borderStyle: "border-rose-500", // Rose as dominant color
   },
   {
     title: "Backend",
@@ -43,9 +38,28 @@ const skillCategories = [
   {
     title: "Development",
     icon: Code2,
-    skills: ["Git / GitHub", "Responsive Design", "RESTful APIs", "TypeScript"],
+    skills: [
+      "Git / GitHub",
+      "RESTful APIs",
+      "JavaScript",
+      "TypeScript",
+      "Responsive Design",
+    ],
     color: "from-amber-500 to-orange-500",
     borderStyle: "border-orange-500", // Orange for clear visibility
+  },
+  {
+    title: "Styling",
+    icon: Palette,
+    skills: [
+      "CSS / CSS3",
+      "Material UI",
+      "Tailwind CSS",
+      "Style-component",
+      "Bootstrap / ReactStrap",
+    ],
+    color: "from-pink-500 to-rose-500",
+    borderStyle: "border-rose-500", // Rose as dominant color
   },
   {
     title: "Project Management",
@@ -145,7 +159,7 @@ export const Skills: React.FC<SkillsProps> = ({ themeColor }) => {
                       return (
                         <span
                           key={skill}
-                          className={`px-4 py-2 text-lg font-medium text-transparent bg-clip-text rounded-lg border-2 bg-gradient-to-r ${category.color} ${category.borderStyle}`}
+                          className={`px-3 py-2 text-md font-medium text-transparent bg-clip-text rounded-full border-2 bg-gradient-to-r ${category.color} ${category.borderStyle}`}
                           style={{
                             WebkitBackgroundClip: "text",
                             WebkitTextFillColor: "transparent",

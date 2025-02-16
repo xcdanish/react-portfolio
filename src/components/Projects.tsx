@@ -1,7 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
-import { getThemeColors } from "../App";
+import { getThemeColors } from "../Theme/ThemeBox";
 
 const projects = [
   {
@@ -152,7 +152,7 @@ export const Projects: React.FC<ProjectsProps> = ({ themeColor }) => {
                     {project.tags.map((tag) => (
                       <span
                         key={tag}
-                        className="px-3 py-1 text-sm bg-blue-100 dark:bg-blue-900 text-blue-600 dark:text-blue-400 rounded-full"
+                        className={`px-3 py-1 text-sm bg-gradient-to-r ${colors.primary} ${colors.secondary} text-white dark:${colors.subtext} rounded-full`}
                       >
                         {tag}
                       </span>

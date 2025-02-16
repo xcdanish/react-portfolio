@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Menu,
@@ -10,7 +10,7 @@ import {
   Clock,
   Mail,
 } from "lucide-react";
-import { getThemeColors } from "../App";
+import { getThemeColors } from "../Theme/ThemeBox";
 
 const navItems = [
   { name: "Home", icon: Code, href: "#home" },
@@ -20,6 +20,7 @@ const navItems = [
   { name: "Projects", icon: Briefcase, href: "#projects" },
   { name: "Contact", icon: Mail, href: "#contact" },
 ];
+
 interface NavbarProps {
   themeColor: string;
 }
@@ -28,6 +29,31 @@ export const Navbar: React.FC<NavbarProps> = ({ themeColor }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [activeItem, setActiveItem] = useState("Home");
   const colors = getThemeColors(themeColor);
+
+  // Track the current section based on scroll position
+  useEffect(() => {
+    const sectionIds = navItems.map((item) => item.href.substring(1)); // Extract IDs
+
+    const handleScroll = () => {
+      let currentSection = "Home"; // Default active section
+
+      for (const id of sectionIds) {
+        const section = document.getElementById(id);
+        if (section) {
+          const rect = section.getBoundingClientRect();
+          if (rect.top <= window.innerHeight * 0.3 && rect.bottom >= 100) {
+            currentSection = id.charAt(0).toUpperCase() + id.slice(1);
+          }
+        }
+      }
+
+      setActiveItem(currentSection);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    handleScroll(); // Call initially to set the correct active state
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-white/80 dark:bg-gray-900/80 backdrop-blur-lg">
@@ -48,22 +74,24 @@ export const Navbar: React.FC<NavbarProps> = ({ themeColor }) => {
               <motion.a
                 key={item.name}
                 href={item.href}
-                className={`flex items-center space-x-1 text-gray-600 dark:text-gray-300 ${colors.hover} relative group`}
+                className={`flex items-center space-x-1 ${
+                  activeItem === item.name
+                    ? colors.text
+                    : "text-gray-600 dark:text-gray-300"
+                } ${colors.hover} relative group`}
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.95 }}
-                onHoverStart={() => setActiveItem(item.name)}
               >
                 <item.icon className="w-4 h-4" />
                 <span>{item.name}</span>
-                <motion.div
-                  className={`absolute -bottom-1 left-0 w-full h-0.5 bg-gradient-to-r ${colors.primary} rounded-full`}
-                  initial={{ scaleX: 0 }}
-                  animate={{
-                    scaleX: activeItem === item.name ? 1 : 0,
-                    opacity: activeItem === item.name ? 1 : 0,
-                  }}
-                  transition={{ duration: 0.2 }}
-                />
+                {activeItem === item.name && (
+                  <motion.div
+                    className={`absolute -bottom-1 left-0 w-full h-0.5 bg-gradient-to-r ${colors.primary} rounded-full`}
+                    initial={{ scaleX: 0 }}
+                    animate={{ scaleX: 1, opacity: 1 }}
+                    transition={{ duration: 0.2 }}
+                  />
+                )}
               </motion.a>
             ))}
           </div>
@@ -93,8 +121,12 @@ export const Navbar: React.FC<NavbarProps> = ({ themeColor }) => {
                 <motion.a
                   key={item.name}
                   href={item.href}
-                  className={`flex items-center space-x-2 py-3 text-gray-600 dark:text-gray-300 ${colors.hover}`}
-                  whileHover={{ x: 10, color: getThemeColors(themeColor).text }}
+                  className={`flex items-center space-x-2 py-3 ${
+                    activeItem === item.name
+                      ? colors.text
+                      : "text-gray-600 dark:text-gray-300"
+                  } ${colors.hover}`}
+                  whileHover={{ x: 10 }}
                   onClick={() => setIsOpen(false)}
                 >
                   <item.icon className="w-5 h-5" />
