@@ -29,21 +29,21 @@ export const colors = [
   { name: "lime", class: "from-lime-500 via-green-500 to-teal-500" },
 ];
 
-const fonts = [
-  { name: "inter", label: "Inter" },
-  { name: "poppins", label: "Poppins" },
-  { name: "roboto", label: "Roboto" },
-];
+// const fonts = [
+//   { name: "inter", label: "Inter" },
+//   { name: "poppins", label: "Poppins" },
+//   { name: "roboto", label: "Roboto" },
+// ];
 
 export const ThemeDrawer: React.FC<ThemeDrawerProps> = ({
   isOpen,
   onClose,
   theme,
   themeColor,
-  fontFamily,
+  // fontFamily,
   onThemeChange,
   onColorChange,
-  onFontChange,
+  // onFontChange,
 }) => {
   return (
     <AnimatePresence>
@@ -82,7 +82,7 @@ export const ThemeDrawer: React.FC<ThemeDrawerProps> = ({
             <div className="space-y-6 overflow-y-auto h-[calc(100%-60px)] pr-2 scrollbar-hide">
               {/* Theme Mode */}
               <div>
-                <div className="flex items-center gap-2 mb-3">
+                <div className="flex items-center gap-2 mb-3 mt-3">
                   {theme === "dark" ? (
                     <Moon className="w-5 h-5 text-white" />
                   ) : (
@@ -111,11 +111,11 @@ export const ThemeDrawer: React.FC<ThemeDrawerProps> = ({
 
               {/* Color Scheme */}
               <div>
-                <div className="flex items-center gap-2 mb-3">
+                <div className="flex items-center gap-2 mb-3 ">
                   <Palette className="w-5 h-5 text-white" />
                   <h3 className="font-semibold text-gray-200">Color Scheme</h3>
                 </div>
-                <div className="grid grid-cols-4 gap-3">
+                <div className="grid grid-cols-3 place-items-center gap-3">
                   {colors.map((color) => (
                     <motion.button
                       key={color.name}
@@ -133,7 +133,7 @@ export const ThemeDrawer: React.FC<ThemeDrawerProps> = ({
               </div>
 
               {/* Font Family */}
-              <div>
+              {/* <div>
                 <div className="flex items-center gap-2 mb-3">
                   <Type className="w-5 h-5 text-white" />
                   <h3 className="font-semibold text-gray-200">Font Family</h3>
@@ -155,7 +155,7 @@ export const ThemeDrawer: React.FC<ThemeDrawerProps> = ({
                     </motion.button>
                   ))}
                 </div>
-              </div>
+              </div> */}
             </div>
           </motion.div>
         </>

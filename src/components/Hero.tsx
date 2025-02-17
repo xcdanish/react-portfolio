@@ -3,6 +3,7 @@ import { motion, useAnimationControls } from "framer-motion";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { Code, Database, Server } from "lucide-react";
+import { getThemeColors } from "../Theme/ThemeBox";
 
 const CharacterAnimation = ({
   text,
@@ -11,8 +12,8 @@ const CharacterAnimation = ({
   text: string;
   className?: string;
 }) => {
-  // const characters = Array.from(text);
-  const characters = text.split("");
+  const characters = Array.from(text);
+  // const characters = text.split("");
 
   return (
     <span className={className}>
@@ -22,7 +23,7 @@ const CharacterAnimation = ({
           initial={{ opacity: 0, y: 50 }}
           animate={{
             opacity: 1,
-            y: 0,
+            y: 20,
           }}
           transition={{
             duration: 0.5,
@@ -39,8 +40,12 @@ const CharacterAnimation = ({
     </span>
   );
 };
+interface HeroProps {
+  themeColor: string;
+}
 
-export const Hero: React.FC = () => {
+export const Hero: React.FC<HeroProps> = ({ themeColor }) => {
+  const colors = getThemeColors(themeColor);
   const containerRef = useRef<HTMLDivElement>(null);
   const gradientRef = useRef<HTMLDivElement>(null);
 
@@ -164,7 +169,8 @@ export const Hero: React.FC = () => {
           >
             <CharacterAnimation
               text="Mohammed Danish"
-              className="bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent"
+              className={`bg-gradient-to-r ${colors.primary} ${colors.secondary} bg-clip-text text-[currentColor] font-dodge`}
+              // className="bg-gradient-to-r from-red-500 via-purple-500 to-pink-500 bg-clip-text text-transparent font-dodge"
             />
           </motion.div>
 
@@ -176,7 +182,7 @@ export const Hero: React.FC = () => {
           >
             <CharacterAnimation
               text="MERN Stack Developer"
-              className="bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-clip-text text-transparent"
+              className={`font-dodge bg-gradient-to-r ${colors.primary} ${colors.secondary} bg-clip-text text-[currentColor]`}
             />
           </motion.div>
         </div>

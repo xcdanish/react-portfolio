@@ -49,7 +49,7 @@ export const Contact: React.FC<ContactProps> = ({ themeColor }) => {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <h3 className="text-2xl font-semibold mb-6 text-white">
+            <h3 className={`text-2xl font-semibold mb-6 ${colors.primary}`}>
               Contact Info
             </h3>
             <div className="space-y-6">
@@ -57,28 +57,28 @@ export const Contact: React.FC<ContactProps> = ({ themeColor }) => {
                 {
                   Icon: Mail,
                   label: "Email",
-                  value: "contact@example.com",
-                  link: "mailto:contact@example.com",
+                  value: "danish.md9600@gmail.com",
+                  link: "mailto:danish.md9600@gmail.com",
                 },
                 {
                   Icon: Phone,
                   label: "Phone",
-                  value: "+1 (234) 567-890",
-                  link: "tel:+1234567890",
+                  value: "+91 (8829) 059-600",
+                  link: "tel:+918829059600",
                 },
                 {
                   Icon: MapPin,
                   label: "Location",
-                  value: "San Francisco, CA",
+                  value: "Kota, Rajasthan, India",
                   link: "#",
                 },
               ].map(({ Icon, label, value, link }, i) => (
                 <a
                   key={i}
                   href={link}
-                  className={`flex items-center space-x-4 text-white/80 hover:text-white transition`}
+                  className={`flex items-center space-x-4 ${colors.primary} hover:text-white transition`}
                 >
-                  <Icon className="w-6 h-6 text-white" />
+                  <Icon className={`w-6 h-6 ${colors.primary}`} />
                   <div>
                     <p className="font-medium">{label}</p>
                     <p>{value}</p>
@@ -96,7 +96,9 @@ export const Contact: React.FC<ContactProps> = ({ themeColor }) => {
             <form onSubmit={handleSubmit} className="space-y-6">
               {["name", "email", "subject"].map((field) => (
                 <div key={field}>
-                  <label className="block text-sm font-medium text-white/80 mb-1 capitalize">
+                  <label
+                    className={`block text-sm font-medium ${colors.primary} mb-1 capitalize`}
+                  >
                     {field}
                   </label>
                   <input
@@ -105,12 +107,14 @@ export const Contact: React.FC<ContactProps> = ({ themeColor }) => {
                     value={(formData as any)[field]}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-2 rounded-lg bg-white/20 backdrop-blur-md border border-white/30 text-white focus:ring-2 focus:ring-white outline-none"
+                    className={`w-full px-4 py-2 rounded-lg ${colors.primary} backdrop-blur-md border ${colors.primary} ${colors.secondary} focus:ring-2 focus:${colors.secondary} outline-none`}
                   />
                 </div>
               ))}
               <div>
-                <label className="block text-sm font-medium text-white/80 mb-1">
+                <label
+                  className={`block text-sm font-medium ${colors.primary} mb-1`}
+                >
                   Message
                 </label>
                 <textarea
@@ -119,14 +123,14 @@ export const Contact: React.FC<ContactProps> = ({ themeColor }) => {
                   onChange={handleChange}
                   required
                   rows={4}
-                  className="w-full px-4 py-2 rounded-lg bg-white/20 backdrop-blur-md border border-white/30 text-white focus:ring-2 focus:ring-white outline-none"
+                  className={`w-full px-4 py-2 rounded-lg ${colors.primary} backdrop-blur-md border ${colors.primary} ${colors.secondary} focus:ring-2 focus:${colors.secondary} outline-none`}
                 />
               </div>
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 type="submit"
-                className={`w-full flex items-center justify-center space-x-2 px-6 py-3 rounded-lg font-semibold bg-gradient-to-r ${colors.gradient} text-white shadow-lg`}
+                className={`w-full flex items-center justify-center space-x-2 px-6 py-3 rounded-lg font-semibold bg-gradient-to-r ${colors.gradient} shadow-lg`}
               >
                 <Send className="w-5 h-5" />
                 <span>Send Message</span>

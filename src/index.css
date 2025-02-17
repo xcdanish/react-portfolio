@@ -2,6 +2,20 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: 'DODGE';
+  src: url('/public/fonts/DODGE.ttf') format('truetype');
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Montserrat';
+  src: url('/public/fonts/Montserrat-Regular.ttf') format('truetype');
+  font-display: swap;
+  font-style: normal;
+}
+
 @layer base {
   :root {
     --scroll-smooth: scroll-behavior: smooth;
@@ -13,6 +27,37 @@
 
   body {
     @apply antialiased bg-gradient-to-b from-gray-50/80 to-white/80 dark:from-gray-900/80 dark:to-black/80 overflow-x-hidden;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  a {
+    @apply font-dodge tracking-wide;
+  }
+
+  p,
+  button,
+  input,
+  textarea {
+    @apply font-montserrat;
+  }
+
+  /* Optimize paint performance */
+  * {
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+  }
+
+  /* Prevent mobile pull-to-refresh */
+  body {
+    overscroll-behavior-y: none;
   }
 }
 
@@ -20,14 +65,18 @@
   color-scheme: dark;
 }
 
+.font-dodge {
+  font-family: 'DODGE', sans-serif;
+}
+
+.font-montserrat {
+  font-family: 'Montserrat', sans-serif;
+}
+
 /* Custom scrollbar */
-/* Make scrolling smooth */
-/* Customize scrollbar width */
 ::-webkit-scrollbar {
   width: 5px;
-  /* Increase width for better visibility */
   height: 100px;
-  /* Increase height for horizontal scrollbar */
 }
 
 /* Scrollbar Track */
@@ -101,6 +150,22 @@
     background-position: 0% 50%;
   }
 }
+@keyframes gradientMove {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.animate-gradient-move {
+  background-size: 200% 200%;
+  animation: gradientMove 3s infinite linear;
+}
 
 .animate-gradient-flow {
   animation: gradient-flow 15s ease infinite;
@@ -142,35 +207,30 @@
 }
 
 .hexagon {
-  clip-path: polygon(
-    50% 0%,
-    100% 25%,
-    100% 75%,
-    50% 100%,
-    0% 75%,
-    0% 25%
-  );
+  clip-path: polygon(50% 0%,
+      100% 25%,
+      100% 75%,
+      50% 100%,
+      0% 75%,
+      0% 25%);
 }
 
 .star {
-  clip-path: polygon(
-    50% 0%,
-    61% 35%,
-    98% 35%,
-    68% 57%,
-    79% 91%,
-    50% 70%,
-    21% 91%,
-    32% 57%,
-    2% 35%,
-    39% 35%
-  );
+  clip-path: polygon(50% 0%,
+      61% 35%,
+      98% 35%,
+      68% 57%,
+      79% 91%,
+      50% 70%,
+      21% 91%,
+      32% 57%,
+      2% 35%,
+      39% 35%);
 }
 
 .heart {
-  clip-path: path(
-    "M50 15C50 5 65 0 75 15S50 55 50 55S25 15 25 15S35 0 50 15z"
-  );
+  clip-path: path("M50 15C50 5 65 0 75 15S50 55 50 55S25 15 25 15S35 0 50 15z"
+    );
 }
 
 .diamond {

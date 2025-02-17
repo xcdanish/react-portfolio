@@ -1,46 +1,85 @@
-import React, { useState, useEffect, createContext } from 'react';
-import { ThemeToggle } from './components/ThemeToggle';
-import { ThemeDrawer } from './components/ThemeDrawer';
-import { Navbar } from './components/Navbar';
-import { Hero } from './components/Hero';
-import { About } from './components/About';
-import { Skills } from './components/Skills';
-import { Timeline } from './components/Timeline';
-import { Projects } from './components/Projects';
-import { Contact } from './components/Contact';
-import { FloatingShapes } from './Animation/FloatingShapes';
-import { motion, AnimatePresence } from 'framer-motion';
-import { getThemeColors } from './Theme/ThemeBox';
+import { useState, useEffect, createContext, Suspense, lazy } from "react";
+// import { FloatingShapes } from "./Animation/FloatingShapes";
+import { motion, AnimatePresence } from "framer-motion";
+import { getThemeColors } from "./Theme/ThemeBox";
+
+// Lazy load components
+const FloatingShapes = lazy(() =>
+  import("./Animation/FloatingShapes").then((module) => ({
+    default: module.FloatingShapes,
+  }))
+);
+const Navbar = lazy(() =>
+  import("./components/Navbar").then((module) => ({ default: module.Navbar }))
+);
+const Hero = lazy(() =>
+  import("./components/Hero").then((module) => ({ default: module.Hero }))
+);
+const About = lazy(() =>
+  import("./components/About").then((module) => ({ default: module.About }))
+);
+const Skills = lazy(() =>
+  import("./components/Skills").then((module) => ({ default: module.Skills }))
+);
+const Timeline = lazy(() =>
+  import("./components/Timeline").then((module) => ({
+    default: module.Timeline,
+  }))
+);
+const Projects = lazy(() =>
+  import("./components/Projects").then((module) => ({
+    default: module.Projects,
+  }))
+);
+const Contact = lazy(() =>
+  import("./components/Contact").then((module) => ({ default: module.Contact }))
+);
+const ThemeDrawer = lazy(() =>
+  import("./components/ThemeDrawer").then((module) => ({
+    default: module.ThemeDrawer,
+  }))
+);
+const ThemeToggle = lazy(() =>
+  import("./components/ThemeToggle").then((module) => ({
+    default: module.ThemeToggle,
+  }))
+);
 
 export const ThemeContext = createContext<{
   themeColor: string;
-  theme: 'light' | 'dark';
-}>({ themeColor: 'blue', theme: 'dark' });
+  theme: "light" | "dark";
+}>({ themeColor: "blue", theme: "dark" });
+
+const LoadingSection = () => (
+  <div className="min-h-screen flex items-center justify-center">
+    <div className="w-16 h-16 border-4 border-blue-600 border-t-transparent rounded-full animate-spin"></div>
+  </div>
+);
 
 function App() {
-  const [theme, setTheme] = useState<'light' | 'dark'>('dark');
+  const [theme, setTheme] = useState<"light" | "dark">("dark");
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
-  const [themeColor, setThemeColor] = useState('blue');
-  const [fontFamily, setFontFamily] = useState('inter');
+  const [themeColor, setThemeColor] = useState("blue");
+  const [fontFamily, setFontFamily] = useState("inter");
 
   useEffect(() => {
-    document.documentElement.classList.toggle('dark', theme === 'dark');
+    document.documentElement.classList.toggle("dark", theme === "dark");
     document.documentElement.classList.toggle(
-      'font-inter',
-      fontFamily === 'inter'
+      "font-inter",
+      fontFamily === "inter"
     );
     document.documentElement.classList.toggle(
-      'font-poppins',
-      fontFamily === 'poppins'
+      "font-poppins",
+      fontFamily === "poppins"
     );
     document.documentElement.classList.toggle(
-      'font-roboto',
-      fontFamily === 'roboto'
+      "font-roboto",
+      fontFamily === "roboto"
     );
   }, [theme, fontFamily]);
 
   const toggleTheme = () => {
-    setTheme((prev) => (prev === 'light' ? 'dark' : 'light'));
+    setTheme((prev) => (prev === "light" ? "dark" : "light"));
   };
 
   return (
@@ -94,49 +133,24 @@ function App() {
               </motion.div>
             </button>
 
-            <Navbar themeColor={themeColor} />
-            <div className="section-wrapper">
-              <FloatingShapes themeColor={themeColor} />
-              <div className="section-content">
-                <Hero themeColor={themeColor} />
-              </div>
-            </div>
-
-            <div className="section-wrapper">
-              {/* <FireAndFume /> */}
-              <FloatingShapes themeColor={themeColor} />
-              <div className="section-content">
-                <About themeColor={themeColor} />
-              </div>
-            </div>
-
-            <div className="section-wrapper">
-              <FloatingShapes themeColor={themeColor} />
-              <div className="section-content">
-                <Skills themeColor={themeColor} />
-              </div>
-            </div>
-
-            <div className="section-wrapper">
-              <FloatingShapes themeColor={themeColor} />
-              <div className="section-content">
-                <Timeline themeColor={themeColor} />
-              </div>
-            </div>
-
-            <div className="section-wrapper">
-              <FloatingShapes themeColor={themeColor} />
-              <div className="section-content">
-                <Projects themeColor={themeColor} />
-              </div>
-            </div>
-
-            <div className="section-wrapper">
-              <FloatingShapes themeColor={themeColor} />
-              <div className="section-content">
-                <Contact themeColor={themeColor} />
-              </div>
-            </div>
+            <Suspense fallback={<LoadingSection />}>
+              <Navbar themeColor={themeColor} />
+              {[
+                { Component: Hero, id: "hero" },
+                { Component: About, id: "about" },
+                { Component: Skills, id: "skills" },
+                { Component: Timeline, id: "timeline" },
+                { Component: Projects, id: "projects" },
+                { Component: Contact, id: "contact" },
+              ].map(({ Component, id }) => (
+                <div key={id} className="section-wrapper">
+                  <FloatingShapes themeColor={themeColor} />
+                  <div className="section-content">
+                    <Component themeColor={themeColor} />
+                  </div>
+                </div>
+              ))}
+            </Suspense>
           </div>
         </motion.div>
       </AnimatePresence>

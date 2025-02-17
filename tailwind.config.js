@@ -49,6 +49,8 @@ export default {
         inter: ['Inter', 'sans-serif'],
         poppins: ['Poppins', 'sans-serif'],
         roboto: ['Roboto', 'sans-serif'],
+        dodge: ["DODGE", "sans-serif"],
+        montserrat: ['Montserrat', 'sans-serif'],
       },
     },
   },

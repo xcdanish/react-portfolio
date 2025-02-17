@@ -152,7 +152,11 @@ export const Projects: React.FC<ProjectsProps> = ({ themeColor }) => {
                     {project.tags.map((tag) => (
                       <span
                         key={tag}
-                        className={`px-3 py-1 text-sm bg-gradient-to-r ${colors.primary} ${colors.secondary} text-white dark:${colors.subtext} rounded-full`}
+                        className={`px-3 py-1 text-sm bg-gradient-to-r ${
+                          colors.primary
+                        } ${colors.secondary} ${
+                          themeColor !== "black" ? colors.subtext : "text-white"
+                        } dark:${colors.subtext} rounded-full`}
                       >
                         {tag}
                       </span>
