@@ -214,3 +214,79 @@
 .mobile-menu-link {
   @apply block w-full py-2 px-4 text-left hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors;
 }
+
+
+/* #2563eb, #7e22ce */
+
+/* HTML: <div class="loader"></div> */
+.loader {
+  width: fit-content;
+  font-size: 100px;
+  font-family: monospace;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: #0000;
+  -webkit-text-stroke: 2px #7e22ce;
+  --g: conic-gradient(#2563eb 0 0) no-repeat text;
+  background: var(--g) 0, var(--g) 1ch, var(--g) 2ch, var(--g) 3ch, var(--g) 4ch, var(--g) 5ch, var(--g) 6ch;
+  background-position-y: 100%;
+  animation: l19 1.5s linear infinite alternate;
+}
+
+.loader:before {
+  content: "Loading";
+}
+
+@keyframes l19 {
+  0% {
+    background-size: 1ch 0, 1ch 0, 1ch 0, 1ch 0, 1ch 0, 1ch 0, 1ch 0
+  }
+
+  25% {
+    background-size: 1ch 100%, 1ch 50%, 1ch 0, 1ch 0, 1ch 0, 1ch 50%, 1ch 100%
+  }
+
+  50% {
+    background-size: 1ch 100%, 1ch 100%, 1ch 50%, 1ch 0, 1ch 50%, 1ch 100%, 1ch 100%
+  }
+
+  75% {
+    background-size: 1ch 100%, 1ch 100%, 1ch 100%, 1ch 50%, 1ch 100%, 1ch 100%, 1ch 100%
+  }
+
+  to {
+    background-size: 1ch 100%, 1ch 100%, 1ch 100%, 1ch 100%, 1ch 100%, 1ch 100%, 1ch 100%
+  }
+}
+
+/* HTML: <div class="loader"></div> */
+/* .loader {
+  width: 250px;
+  height: 50px;
+  border-radius: 40px;
+  color: #7e22ce;
+  border: 2px solid #2563eb;
+  position: relative;
+  overflow: hidden;
+}
+
+.loader::before {
+  content: "";
+  position: absolute;
+  margin: 2px;
+  width: 14px;
+  top: 0;
+  bottom: 0;
+  left: -20px;
+  border-radius: inherit;
+  background: currentColor;
+  box-shadow: -10px 0 12px 3px currentColor;
+  clip-path: polygon(0 5%, 100% 0, 100% 100%, 0 95%, -30px 50%);
+  animation: l14 1s infinite linear;
+}
+
+@keyframes l14 {
+  100% {
+    left: calc(100% + 20px)
+  }
+} */

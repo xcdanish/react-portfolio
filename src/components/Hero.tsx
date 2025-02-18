@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from "react";
-import { motion, useAnimationControls } from "framer-motion";
+import { motion } from "framer-motion";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { Code, Database, Server } from "lucide-react";
@@ -13,8 +13,6 @@ const CharacterAnimation = ({
   className?: string;
 }) => {
   const characters = Array.from(text);
-  // const characters = text.split("");
-
   return (
     <span className={className}>
       {characters.map((char, index) => (
@@ -40,6 +38,7 @@ const CharacterAnimation = ({
     </span>
   );
 };
+
 interface HeroProps {
   themeColor: string;
 }
@@ -52,12 +51,13 @@ export const Hero: React.FC<HeroProps> = ({ themeColor }) => {
   useGSAP(() => {
     const tl = gsap.timeline();
 
+    // GSAP Shrink animation for hero icons
     tl.from(".hero-icon", {
       scale: 0,
       opacity: 0,
       duration: 0.5,
       stagger: 0.2,
-      ease: "back.out(1.7)",
+      ease: "back.out(1.7)", // Use GSAP easing directly here
     });
 
     // Animated gradient background
@@ -97,14 +97,7 @@ export const Hero: React.FC<HeroProps> = ({ themeColor }) => {
         }}
       />
 
-      {/* Animated mesh gradient */}
-      <div className="absolute inset-0">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(50,50,255,0.1),transparent_50%)] animate-pulse" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_20%,rgba(255,50,255,0.1),transparent_50%)] animate-pulse" />
-        <div className="absolute inset-0" />
-      </div>
-
-      {/* Floating orbs with enhanced animation */}
+      {/* Floating orbs */}
       {[...Array(8)].map((_, i) => (
         <div
           key={i}
@@ -121,6 +114,7 @@ export const Hero: React.FC<HeroProps> = ({ themeColor }) => {
         />
       ))}
 
+      {/* Main container with text and icons */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -128,8 +122,14 @@ export const Hero: React.FC<HeroProps> = ({ themeColor }) => {
         className="container mx-auto px-4 text-center relative z-10"
       >
         <div className="flex justify-center gap-6 mb-12">
+          {/* Hero icons with shrink animation */}
           <motion.div
             className="hero-icon p-4 bg-white/5 backdrop-blur-lg rounded-2xl border border-white/10 hover:border-white/20 transition-all duration-300"
+            initial={{ scale: 0 }}
+            animate={{ scale: 1 }}
+            transition={{
+              duration: 0.8,
+            }}
             whileHover={{
               scale: 1.1,
               rotate: 5,
@@ -138,8 +138,14 @@ export const Hero: React.FC<HeroProps> = ({ themeColor }) => {
           >
             <Code className="w-8 h-8 text-blue-400" />
           </motion.div>
+
           <motion.div
             className="hero-icon p-4 bg-white/5 backdrop-blur-lg rounded-2xl border border-white/10 hover:border-white/20 transition-all duration-300"
+            initial={{ scale: 0 }}
+            animate={{ scale: 1 }}
+            transition={{
+              duration: 0.8,
+            }}
             whileHover={{
               scale: 1.1,
               rotate: -5,
@@ -148,18 +154,25 @@ export const Hero: React.FC<HeroProps> = ({ themeColor }) => {
           >
             <Database className="w-8 h-8 text-purple-400" />
           </motion.div>
+
           <motion.div
             className="hero-icon p-4 bg-white/5 backdrop-blur-lg rounded-2xl border border-white/10 hover:border-white/20 transition-all duration-300"
+            initial={{ scale: 0 }}
+            animate={{ scale: 1 }}
+            transition={{
+              duration: 0.8,
+            }}
             whileHover={{
               scale: 1.1,
               rotate: 5,
-              boxShadow: "0 0 30px rgba(236, 72, 153, 0.5)",
+              boxShadow: "0 0 30px rgba(236, 72, 72, 0.5)",
             }}
           >
-            <Server className="w-8 h-8 text-pink-400" />
+            <Server className="w-8 h-8 text-red-400" />
           </motion.div>
         </div>
 
+        {/* Main Text and Call-to-Actions */}
         <div className="space-y-6 mb-12">
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
@@ -170,7 +183,6 @@ export const Hero: React.FC<HeroProps> = ({ themeColor }) => {
             <CharacterAnimation
               text="Mohammed Danish"
               className={`bg-gradient-to-r ${colors.primary} ${colors.secondary} bg-clip-text text-[currentColor] font-dodge`}
-              // className="bg-gradient-to-r from-red-500 via-purple-500 to-pink-500 bg-clip-text text-transparent font-dodge"
             />
           </motion.div>
 
