@@ -144,7 +144,7 @@ export const Timeline: React.FC<TimelineProps> = ({ themeColor }) => {
                           {item.date}
                         </span>
                       </div>
-                      <h3 className="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-1">
+                      <h3 className="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-1 tracking-widest">
                         {item.title}
                       </h3>
                       <p className="text-gray-700 dark:text-gray-400 mb-2">

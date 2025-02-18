@@ -60,7 +60,7 @@ const projects = [
     githubUrl: "#",
   },
   {
-    title: "Trendies - Stock Marketing App",
+    title: "Trendies - Stock Marketing",
     description:
       "A real-time stock market insights platform that integrates stock data with social media trends from Twitter and Reddit. Includes an admin panel and real-time stock tracking.",
     image:
@@ -69,9 +69,9 @@ const projects = [
       "React",
       "Redux",
       "Node.js",
-      "Twitter API",
       "Reddit API",
-      "Stock Market APIs",
+      "Twitter API",
+      // "Stock Market APIs",
     ],
     liveUrl: "#",
     githubUrl: "#",
@@ -123,7 +123,7 @@ export const Projects: React.FC<ProjectsProps> = ({ themeColor }) => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={inView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="group relative rounded-xl shadow-lg overflow-hidden h-[400px] flex flex-col"
+                className="group relative rounded-xl shadow-lg overflow-hidden h-[500px] flex flex-col"
               >
                 {/* Gradient Background Only on Hover */}
                 <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-500 opacity-0 group-hover:opacity-80 blur-lg rounded-xl transition-opacity duration-300" />
@@ -140,10 +140,10 @@ export const Projects: React.FC<ProjectsProps> = ({ themeColor }) => {
 
                 {/* Content Section */}
                 <div className="bg-white/20 dark:bg-gray-900/20 backdrop-blur-xl border border-white/30 dark:border-gray-800 p-4">
-                  <h3 className="text-gray-800 dark:text-gray-100 text-xl font-semibold mb-2">
+                  <h3 className="text-gray-800 dark:text-gray-100 text-lg font-semibold mb-2 tracking-widest">
                     {project.title}
                   </h3>
-                  <p className="text-gray-700 dark:text-gray-300">
+                  <p className="text-gray-700 dark:text-gray-300 text-justify">
                     {project.description}
                   </p>
 
@@ -152,7 +152,7 @@ export const Projects: React.FC<ProjectsProps> = ({ themeColor }) => {
                     {project.tags.map((tag) => (
                       <span
                         key={tag}
-                        className={`px-3 py-1 text-sm bg-gradient-to-r ${
+                        className={`font-montserrat px-3 py-1 text-sm bg-gradient-to-r ${
                           colors.primary
                         } ${colors.secondary} ${
                           themeColor !== "black" ? colors.subtext : "text-white"

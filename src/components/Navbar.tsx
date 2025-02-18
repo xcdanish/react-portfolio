@@ -28,14 +28,15 @@ interface NavbarProps {
 export const Navbar: React.FC<NavbarProps> = ({ themeColor }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [activeItem, setActiveItem] = useState("Home");
+  const [isScrolled, setIsScrolled] = useState(false);
   const colors = getThemeColors(themeColor);
 
-  // Track the current section based on scroll position
   useEffect(() => {
-    const sectionIds = navItems.map((item) => item.href.substring(1)); // Extract IDs
-
     const handleScroll = () => {
-      let currentSection = "Home"; // Default active section
+      setIsScrolled(window.scrollY > 20);
+
+      const sectionIds = navItems.map((item) => item.href.substring(1));
+      let currentSection = "Home";
 
       for (const id of sectionIds) {
         const section = document.getElementById(id);
@@ -51,17 +52,23 @@ export const Navbar: React.FC<NavbarProps> = ({ themeColor }) => {
     };
 
     window.addEventListener("scroll", handleScroll);
-    handleScroll(); // Call initially to set the correct active state
+    handleScroll();
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-white/80 dark:bg-gray-900/80 backdrop-blur-lg">
-      <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between h-16">
+    <nav
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        isScrolled
+          ? "bg-white/80 dark:bg-gray-900/80 backdrop-blur-lg shadow-lg"
+          : "bg-transparent"
+      }`}
+    >
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between h-16 sm:h-20">
           <motion.a
             href="#home"
-            className={`text-2xl font-bold bg-gradient-to-r ${colors.primary} bg-clip-text text-transparent`}
+            className={`text-xl sm:text-2xl font-bold bg-gradient-to-r ${colors.primary} bg-clip-text text-transparent font-dodge`}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
@@ -69,7 +76,7 @@ export const Navbar: React.FC<NavbarProps> = ({ themeColor }) => {
           </motion.a>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex space-x-8">
+          <div className="hidden md:flex space-x-6 lg:space-x-8">
             {navItems.map((item) => (
               <motion.a
                 key={item.name}
@@ -78,7 +85,7 @@ export const Navbar: React.FC<NavbarProps> = ({ themeColor }) => {
                   activeItem === item.name
                     ? colors.text
                     : "text-gray-600 dark:text-gray-300"
-                } ${colors.hover} relative group`}
+                } ${colors.hover} relative group font-dodge`}
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.95 }}
               >
@@ -99,7 +106,7 @@ export const Navbar: React.FC<NavbarProps> = ({ themeColor }) => {
           {/* Mobile Menu Button */}
           <motion.button
             whileTap={{ scale: 0.95 }}
-            className={`md:hidden p-2 ${colors.text}`}
+            className={`md:hidden p-2 ${colors.text} hover:bg-white/10 rounded-lg transition-colors`}
             onClick={() => setIsOpen(!isOpen)}
           >
             {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -114,23 +121,31 @@ export const Navbar: React.FC<NavbarProps> = ({ themeColor }) => {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-white dark:bg-gray-900 border-t dark:border-gray-800"
+            className="md:hidden bg-white/90 dark:bg-gray-900/90 backdrop-blur-lg border-t dark:border-gray-800"
           >
             <div className="container mx-auto px-4 py-4">
               {navItems.map((item) => (
                 <motion.a
                   key={item.name}
                   href={item.href}
-                  className={`flex items-center space-x-2 py-3 ${
+                  className={`flex items-center space-x-3 py-4 ${
                     activeItem === item.name
                       ? colors.text
                       : "text-gray-600 dark:text-gray-300"
-                  } ${colors.hover}`}
+                  } ${colors.hover} font-dodge`}
                   whileHover={{ x: 10 }}
-                  onClick={() => setIsOpen(false)}
+                  onClick={(e) => {
+                    e.preventDefault(); // Prevent default anchor behavior
+                    setIsOpen(false); // Close the menu
+                    setTimeout(() => {
+                      document
+                        .querySelector(item.href)
+                        ?.scrollIntoView({ behavior: "smooth" });
+                    }, 300); // Small delay to allow menu to close
+                  }}
                 >
                   <item.icon className="w-5 h-5" />
-                  <span>{item.name}</span>
+                  <span className="text-lg">{item.name}</span>
                 </motion.a>
               ))}
             </div>

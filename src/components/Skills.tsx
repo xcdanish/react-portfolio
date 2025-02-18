@@ -1,7 +1,16 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
-import { Code2, Server, Layout, Palette, Blocks, Workflow } from "lucide-react";
+import {
+  Code2,
+  Server,
+  Layout,
+  Palette,
+  Blocks,
+  Workflow,
+  CheckCircle,
+  // Brain,
+} from "lucide-react";
 import { getThemeColors } from "../Theme/ThemeBox";
 
 // const shapes = ["circle", "square", "triangle", "star"];
@@ -10,51 +19,105 @@ const skillCategories = [
   {
     title: "Frontend Core",
     icon: Layout,
-    skills: ["React.js", "JavaScript (ES6+)", "TypeScript", "HTML5"],
+    skills: [
+      "React.js",
+      "Next.js",
+      "HTML5",
+      "TypeScript",
+      "Vite",
+      "JavaScript (ES6+)",
+      "React Testing Library",
+    ],
     color: "from-blue-500 to-cyan-500",
-    borderStyle: "border-cyan-500", // Picked cyan as a good border contrast
+    borderStyle: "border-cyan-500",
   },
   {
-    title: "Styling",
+    title: "Styling & Animation",
     icon: Palette,
     skills: [
       "CSS / CSS3",
       "Tailwind CSS",
-      "Bootstrap / ReactStrap",
       "Material UI",
+      "SASS / SCSS",
+      "Framer Motion",
+      "GSAP",
+      "Bootstrap",
+      "ReactStrap",
+      "Styled Components",
     ],
     color: "from-pink-500 to-rose-500",
-    borderStyle: "border-rose-500", // Rose as dominant color
+    borderStyle: "border-rose-500",
   },
   {
     title: "Backend",
     icon: Server,
-    skills: ["Node.js", "Express.js", "Next.js", "MongoDB"],
+    skills: [
+      "Node.js",
+      "Express.js",
+      "MongoDB",
+      "Mongoose",
+      "JWT Authentication",
+      "Sockets.io",
+    ],
     color: "from-green-500 to-emerald-500",
-    borderStyle: "border-emerald-500", // Emerald for better visibility
+    borderStyle: "border-emerald-500",
   },
   {
     title: "State Management",
     icon: Blocks,
-    skills: ["Redux Core", "Redux Toolkit", "Hooks", "Context API"],
+    skills: [
+      "Redux Core",
+      "Redux Toolkit",
+      "React Query",
+      "Hooks",
+      "Context API",
+    ],
     color: "from-purple-500 to-indigo-500",
-    borderStyle: "border-indigo-500", // Indigo keeps it balanced
+    borderStyle: "border-indigo-500",
   },
   {
-    title: "Development",
+    title: "Development & Tools",
     icon: Code2,
-    skills: ["Git / GitHub", "Responsive Design", "RESTful APIs", "TypeScript"],
+    skills: [
+      "Git / GitHub",
+      "Webpack",
+      "Responsive Design",
+      "Vite",
+      "RESTful APIs",
+      "ESLint / Prettier",
+      "Postman / Thunder Client",
+    ],
     color: "from-amber-500 to-orange-500",
-    borderStyle: "border-orange-500", // Orange for clear visibility
+    borderStyle: "border-orange-500",
   },
+  // {
+  //   title: "Testing & Performance",
+  //   icon: CheckCircle,
+  //   skills: [
+  //     "React Testing Library",
+  //     "Cypress",
+  //     "Vitest",
+  //     "Performance Optimization",
+  //   ],
+  //   color: "from-red-500 to-pink-500",
+  //   borderStyle: "border-red-500",
+  // },
   {
     title: "Project Management",
     icon: Workflow,
-    skills: ["Trello", "Jira", "Agile", "Scrum"],
+    skills: ["Trello", "Jira", "Agile", "Scrum", "CI/CD", "GitHub Actions"],
     color: "from-teal-500 to-cyan-500",
-    borderStyle: "border-cyan-500", // Cyan as final selection
+    borderStyle: "border-cyan-500",
   },
+  // {
+  //   title: "AI & Advanced Concepts",
+  //   icon: Brain,
+  //   skills: ["LangChain", "OpenAI API", "TensorFlow.js", "Hugging Face APIs"],
+  //   color: "from-indigo-500 to-blue-500",
+  //   borderStyle: "border-indigo-500",
+  // },
 ];
+
 interface SkillsProps {
   themeColor: string;
 }
@@ -99,7 +162,7 @@ export const Skills: React.FC<SkillsProps> = ({ themeColor }) => {
         })}
       </div> */}
 
-      <div className="container mx-auto px-4 relative z-10">
+      <div className="container mx-auto px-2 relative z-10">
         <motion.div
           ref={ref}
           initial={{ opacity: 0, y: 20 }}
@@ -122,14 +185,16 @@ export const Skills: React.FC<SkillsProps> = ({ themeColor }) => {
                 transition={{ duration: 0.6 }}
                 className="relative group"
               >
-                <div className="relative bg-white bg-opacity-10 dark:bg-gray-900 dark:bg-opacity-50 p-8 rounded-2xl shadow-xl backdrop-blur-xl border border-gradient-to-r from-blue-500 to-pink-500">
+                <div className="relative bg-white bg-opacity-10 dark:bg-gray-900 dark:bg-opacity-50 p-6 rounded-2xl shadow-xl backdrop-blur-xl border border-gradient-to-r from-blue-500 to-pink-500">
                   <div className="flex items-center gap-4 mb-6">
                     <div
-                      className={`p-4 rounded-lg bg-gradient-to-r ${category.color}`}
+                      className={`p-3 rounded-lg bg-gradient-to-r ${category.color}`}
                     >
-                      <category.icon className="w-8 h-8 text-white" />
+                      <category.icon className="w-4 h-4 text-white" />
                     </div>
-                    <h3 className={`text-2xl font-semibold ${colors.subtext}`}>
+                    <h3
+                      className={`tracking-widest text-lg font-semibold ${colors.subtext}`}
+                    >
                       {category.title}
                     </h3>
                   </div>
@@ -145,15 +210,10 @@ export const Skills: React.FC<SkillsProps> = ({ themeColor }) => {
                       return (
                         <span
                           key={skill}
-                          className={`px-4 py-2 text-lg font-medium text-transparent bg-clip-text rounded-lg border-2 bg-gradient-to-r ${category.color} ${category.borderStyle}`}
+                          className={`font-montserrat px-4 py-2 text-base font-medium text-transparent bg-clip-text rounded-lg border-2 bg-gradient-to-r ${category.color} ${category.borderStyle} rounded-3xl`}
                           style={{
                             WebkitBackgroundClip: "text",
                             WebkitTextFillColor: "transparent",
-                            // borderImage: `linear-gradient(to right, ${gradientColors.join(
-                            //   ", "
-                            // )}) 1`,
-                            // borderImage: category.borderStyle,
-                            // borderColor: category.borderStyle,
                             borderWidth: "2px",
                             display: "inline-block",
                           }}
