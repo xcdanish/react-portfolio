@@ -126,7 +126,11 @@ export const Projects: React.FC<ProjectsProps> = ({ themeColor }) => {
                 className="group relative rounded-xl shadow-lg overflow-hidden h-[500px] flex flex-col"
               >
                 {/* Gradient Background Only on Hover */}
-                <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-500 opacity-0 group-hover:opacity-80 blur-lg rounded-xl transition-opacity duration-300" />
+                {/* <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-500 opacity-0 group-hover:opacity-80 blur-lg rounded-xl transition-opacity duration-300" /> */}
+                {/* Gradient Background Only on Hover */}
+                <div
+                  className={`absolute inset-0 bg-gradient-to-r ${colors.from} to-${colors.to} opacity-0 group-hover:opacity-80 blur-lg rounded-xl transition-opacity duration-300`}
+                />
 
                 {/* Image Section (Full View) */}
                 <div className="relative flex-1 overflow-hidden">

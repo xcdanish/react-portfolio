@@ -128,18 +128,45 @@ export const Timeline: React.FC<TimelineProps> = ({ themeColor }) => {
                     index % 2 === 0 ? "md:pr-12" : "md:pl-12"
                   }`}
                 >
+                  {/* <motion.div
+                    className="relative group"
+                    whileHover={{ scale: 1.03 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-500 opacity-0 group-hover:opacity-80 blur-lg rounded-xl transition-opacity duration-300" />
+
+                    <div className="relative backdrop-blur-xl bg-white/20 dark:bg-gray-900/20 p-6 rounded-xl shadow-lg border border-white/30 dark:border-gray-800">
+                      <div className="flex items-center mb-2">
+                        <item.icon className="w-6 h-6 text-blue-500 dark:text-purple-400 group-hover:text-purple-500 transition-colors duration-300" />
+                        <span className="ml-2 text-sm text-gray-800 dark:text-gray-300 font-semibold transition-colors duration-300">
+                          {item.date}
+                        </span>
+                      </div>
+                      <h3 className="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-1 tracking-widest">
+                        {item.title}
+                      </h3>
+                      <p className="text-gray-700 dark:text-gray-400 mb-2">
+                        {item.company}
+                      </p>
+                      <p className="text-gray-600 dark:text-gray-300">
+                        {item.description}
+                      </p>
+                    </div>
+                  </motion.div> */}
                   <motion.div
                     className="relative group"
                     whileHover={{ scale: 1.03 }}
                     transition={{ duration: 0.3 }}
                   >
-                    {/* Gradient Background Only on Hover */}
-                    <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-500 opacity-0 group-hover:opacity-80 blur-lg rounded-xl transition-opacity duration-300" />
+                    {/* Gradient Background Only on Hover (Updated) */}
+                    <div
+                      className={`absolute inset-0 bg-gradient-to-r ${colors.from} ${colors.to} opacity-0 group-hover:opacity-80 blur-lg rounded-xl transition-opacity duration-300`}
+                    />
 
                     {/* Crystal Transparent Glassmorphism Background */}
                     <div className="relative backdrop-blur-xl bg-white/20 dark:bg-gray-900/20 p-6 rounded-xl shadow-lg border border-white/30 dark:border-gray-800">
                       <div className="flex items-center mb-2">
-                        <item.icon className="w-6 h-6 text-blue-500 dark:text-purple-400 group-hover:text-purple-500 transition-colors duration-300" />
+                        <item.icon className={`w-6 h-6 ${colors.text} group-${colors.hover} transition-colors duration-300`} />
                         <span className="ml-2 text-sm text-gray-800 dark:text-gray-300 font-semibold transition-colors duration-300">
                           {item.date}
                         </span>

@@ -38,7 +38,7 @@ export const Contact: React.FC<ContactProps> = ({ themeColor }) => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className={`text-4xl font-extrabold text-center mb-12 bg-clip-text text-transparent bg-gradient-to-r ${colors.primary}`}
+          className={`tracking-widest text-4xl font-extrabold text-center mb-12 bg-clip-text text-transparent bg-gradient-to-r ${colors.primary}`}
         >
           Get In Touch
         </motion.h2>
@@ -49,7 +49,9 @@ export const Contact: React.FC<ContactProps> = ({ themeColor }) => {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <h3 className={`text-2xl font-semibold mb-6 ${colors.primary}`}>
+            <h3
+              className={`tracking-widest text-2xl font-semibold mb-6 ${colors.primary}`}
+            >
               Contact Info
             </h3>
             <div className="space-y-6">
@@ -76,12 +78,12 @@ export const Contact: React.FC<ContactProps> = ({ themeColor }) => {
                 <a
                   key={i}
                   href={link}
-                  className={`flex items-center space-x-4 ${colors.primary} hover:text-white transition`}
+                  className={`flex items-center space-x-4 ${colors.text} ${colors.hover} transition`}
                 >
-                  <Icon className={`w-6 h-6 ${colors.primary}`} />
+                  <Icon className={`w-6 h-6 ${colors.text}`} />
                   <div>
-                    <p className="font-medium">{label}</p>
-                    <p>{value}</p>
+                    <p className={`font-medium ${colors.text}`}>{label}</p>
+                    <p className={colors.subtext}>{value}</p>
                   </div>
                 </a>
               ))}
@@ -97,34 +99,45 @@ export const Contact: React.FC<ContactProps> = ({ themeColor }) => {
               {["name", "email", "subject"].map((field) => (
                 <div key={field}>
                   <label
-                    className={`block text-sm font-medium ${colors.primary} mb-1 capitalize`}
+                    className={`block text-sm font-medium ${colors.text} mb-1 capitalize`}
                   >
                     {field}
                   </label>
-                  <input
-                    type={field === "email" ? "email" : "text"}
-                    name={field}
-                    value={(formData as any)[field]}
-                    onChange={handleChange}
-                    required
-                    className={`w-full px-4 py-2 rounded-lg ${colors.primary} backdrop-blur-md border ${colors.primary} ${colors.secondary} focus:ring-2 focus:${colors.secondary} outline-none`}
-                  />
+                  <div
+                    className={`bg-gradient-to-r ${colors.from} ${colors.to} p-[2px] rounded-lg`}
+                  >
+                    <input
+                      type={field === "email" ? "email" : "text"}
+                      name={field}
+                      value={(formData as any)[field]}
+                      onChange={handleChange}
+                      required
+                      className={`w-full px-4 py-2 rounded-lg bg-white dark:bg-black text-lg ${colors.primary} 
+        focus:outline-none focus:ring-0 focus:bg-transparent`}
+                    />
+                  </div>
                 </div>
               ))}
+
               <div>
                 <label
-                  className={`block text-sm font-medium ${colors.primary} mb-1`}
+                  className={`block text-sm font-medium ${colors.text} mb-1`}
                 >
                   Message
                 </label>
-                <textarea
-                  name="message"
-                  value={formData.message}
-                  onChange={handleChange}
-                  required
-                  rows={4}
-                  className={`w-full px-4 py-2 rounded-lg ${colors.primary} backdrop-blur-md border ${colors.primary} ${colors.secondary} focus:ring-2 focus:${colors.secondary} outline-none`}
-                />
+                <div
+                  className={`bg-gradient-to-r ${colors.from} ${colors.to} p-[2px] rounded-lg`}
+                >
+                  <textarea
+                    name="message"
+                    value={formData.message}
+                    onChange={handleChange}
+                    required
+                    rows={4}
+                    className={`w-full px-4 py-2 rounded-lg bg-white dark:bg-black text-lg ${colors.primary} 
+      focus:outline-none focus:ring-0 focus:bg-transparent`}
+                  />
+                </div>
               </div>
               <motion.button
                 whileHover={{ scale: 1.05 }}

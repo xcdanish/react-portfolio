@@ -22,11 +22,11 @@ export const colors = [
   { name: "yellow", class: "from-yellow-500 via-orange-500 to-red-500" },
   { name: "cyan", class: "from-cyan-600 via-blue-600 to-indigo-600" },
   { name: "pink", class: "from-pink-600 via-rose-600 to-red-600" },
-  { name: "black", class: "from-gray-900 via-gray-800 to-black" },
-  { name: "white", class: "from-gray-100 via-gray-200 to-white" },
   { name: "indigo", class: "from-indigo-600 via-blue-600 to-cyan-600" },
   { name: "teal", class: "from-teal-600 via-green-600 to-lime-600" },
   { name: "lime", class: "from-lime-500 via-green-500 to-teal-500" },
+  // { name: "black", class: "from-gray-900 via-gray-800 to-black" },
+  // { name: "white", class: "from-gray-100 via-gray-200 to-white" },
 ];
 
 // const fonts = [
