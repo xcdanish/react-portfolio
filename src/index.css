@@ -259,6 +259,23 @@
   }
 }
 
+@media (min-width: 320px) and (max-width: 768px) {
+  .loader {
+    width: fit-content;
+    font-size: 60px;
+    font-family: monospace;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #0000;
+    -webkit-text-stroke: 2px #7e22ce;
+    --g: conic-gradient(#2563eb 0 0) no-repeat text;
+    background: var(--g) 0, var(--g) 1ch, var(--g) 2ch, var(--g) 3ch, var(--g) 4ch, var(--g) 5ch, var(--g) 6ch;
+    background-position-y: 100%;
+    animation: l19 1.5s linear infinite alternate;
+  }
+} 
+
+
 /* HTML: <div class="loader"></div> */
 /* .loader {
   width: 250px;

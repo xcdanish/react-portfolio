@@ -128,11 +128,11 @@ export const Hero: React.FC<HeroProps> = ({ themeColor }) => {
             initial={{ scale: 0 }}
             animate={{ scale: 1 }}
             transition={{
-              duration: 0.8,
+              duration: 1,
             }}
             whileHover={{
               scale: 1.1,
-              rotate: 5,
+              rotate: 180,
               boxShadow: "0 0 30px rgba(59, 130, 246, 0.5)",
             }}
           >
@@ -144,7 +144,7 @@ export const Hero: React.FC<HeroProps> = ({ themeColor }) => {
             initial={{ scale: 0 }}
             animate={{ scale: 1 }}
             transition={{
-              duration: 0.8,
+              duration: 1,
             }}
             whileHover={{
               scale: 1.1,
@@ -160,15 +160,15 @@ export const Hero: React.FC<HeroProps> = ({ themeColor }) => {
             initial={{ scale: 0 }}
             animate={{ scale: 1 }}
             transition={{
-              duration: 0.8,
+              duration: 1,
             }}
             whileHover={{
               scale: 1.1,
-              rotate: 5,
-              boxShadow: "0 0 30px rgba(236, 72, 72, 0.5)",
+              rotate: 180,
+              boxShadow: "0 0 30px rgba(255, 251, 245, 0.5)",
             }}
           >
-            <Server className="w-8 h-8 text-red-400" />
+            <Server className="w-8 h-8 text-orange-600" />
           </motion.div>
         </div>
 
@@ -203,7 +203,7 @@ export const Hero: React.FC<HeroProps> = ({ themeColor }) => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1.2 }}
-          className="text-xl md:text-2xl text-gray-300 mb-12 max-w-2xl mx-auto"
+          className={`text-xl md:text-2xl ${colors.subtext} mb-12 max-w-2xl mx-auto`}
         >
           Building modern web experiences with cutting-edge technologies
         </motion.p>
