@@ -86,7 +86,7 @@ export const Timeline: React.FC<TimelineProps> = ({ themeColor }) => {
           className="max-w-4xl mx-auto"
         >
           <h2
-            className={`text-4xl font-bold text-center mb-8 bg-gradient-to-r ${colors.primary} bg-clip-text text-transparent`}
+            className={`tracking-widest text-4xl font-bold text-center mb-8 bg-gradient-to-r ${colors.primary} bg-clip-text text-transparent`}
           >
             Experience & Education
           </h2>
@@ -167,11 +167,11 @@ export const Timeline: React.FC<TimelineProps> = ({ themeColor }) => {
                     <div className="relative backdrop-blur-xl bg-white/20 dark:bg-gray-900/20 p-6 rounded-xl shadow-lg border border-white/30 dark:border-gray-800">
                       <div className="flex items-center mb-2">
                         <item.icon className={`w-6 h-6 ${colors.text} group-${colors.hover} transition-colors duration-300`} />
-                        <span className="ml-2 text-sm text-gray-800 dark:text-gray-300 font-semibold transition-colors duration-300">
+                        <span className="font-montserrat ml-2 text-sm text-gray-800 dark:text-gray-300 font-semibold transition-colors duration-300">
                           {item.date}
                         </span>
                       </div>
-                      <h3 className="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-1 tracking-widest">
+                      <h3 className="tracking-widest text-xl font-semibold text-gray-900 dark:text-gray-100 mb-1">
                         {item.title}
                       </h3>
                       <p className="text-gray-700 dark:text-gray-400 mb-2">

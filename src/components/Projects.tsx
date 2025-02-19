@@ -144,7 +144,7 @@ export const Projects: React.FC<ProjectsProps> = ({ themeColor }) => {
 
                 {/* Content Section */}
                 <div className="bg-white/20 dark:bg-gray-900/20 backdrop-blur-xl border border-white/30 dark:border-gray-800 p-4">
-                  <h3 className="text-gray-800 dark:text-gray-100 text-lg font-semibold mb-2 tracking-widest">
+                  <h3 className="text-gray-800 dark:text-gray-100 text-md font-semibold mb-2 tracking-widest">
                     {project.title}
                   </h3>
                   <p className="text-gray-700 dark:text-gray-300 text-justify">

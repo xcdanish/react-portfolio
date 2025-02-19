@@ -171,7 +171,7 @@ export const Skills: React.FC<SkillsProps> = ({ themeColor }) => {
           className="max-w-6xl mx-auto"
         >
           <h2
-            className={`text-4xl font-bold text-center mb-8 bg-gradient-to-r ${colors.primary} bg-clip-text text-transparent`}
+            className={`tracking-widest text-4xl font-bold text-center mb-8 bg-gradient-to-r ${colors.primary} bg-clip-text text-transparent`}
           >
             Skills & Expertise
           </h2>

@@ -1,31 +1,66 @@
 import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
+// import { getThemeColors } from "../Theme/ThemeBox";
 
-export const FireAndFume = () => {
+interface FireAndFumeProps {
+  themeColor: string;
+}
+
+export const FireAndFume: React.FC<FireAndFumeProps> = ({ themeColor }) => {
+  const [particles, setParticles] = useState<
+    Array<{
+      id: number;
+      size: number;
+      position: { x: number; y: number };
+      color: string;
+    }>
+  >([]);
+
+  useEffect(() => {
+    const newParticles = Array.from({ length: 10 }, (_, i) => ({
+      id: i,
+      size: Math.random() * (160 - 60) + 80, // Random size between 30px and 80px
+      position: {
+        x: Math.random() * 100,
+        y: Math.random() * 100,
+      },
+      color: `hsl(${Math.random() * 360}, 80%, 60%)`, // Random dynamic color
+    }));
+    setParticles(newParticles);
+  }, []);
+
   return (
-    <div className="absolute inset-0 overflow-hidden">
-      {[...Array(15)].map((_, i) => (
+    <div className="absolute inset-0 -z-10 overflow-hidden">
+      {particles.map((particle) => (
         <motion.div
-          key={i}
-          initial={{ y: "100vh", opacity: 0, scale: 0.8 }}
+          key={particle.id}
+          initial={{ opacity: 0, scale: 0.8 }}
           animate={{
-            y: "-10vh",
-            x: ["0%", "3%", "-3%", "0%"], // Gentle swaying motion
-            opacity: [0, 0.4, 0], // Appears & disappears smoothly
-            scale: [0.8, 1.2, 0.8], // Expands slightly like flickering fire
+            opacity: [0.3, 0.7, 0.3],
+            x: [
+              `${particle.position.x}vw`,
+              `${particle.position.x + Math.random() * 10 - 5}vw`,
+              `${particle.position.x}vw`,
+            ],
+            y: [
+              `${particle.position.y}vh`,
+              `${particle.position.y + Math.random() * 10 - 5}vh`,
+              `${particle.position.y}vh`,
+            ],
+            scale: [1, 1.4, 1],
+            rotate: [0, 360, 0],
           }}
           transition={{
-            duration: 6 + i * 2, // Random duration for natural feel
+            duration: Math.random() * 5 + 10,
             repeat: Infinity,
             ease: "easeInOut",
           }}
-          className="absolute w-32 h-32 rounded-full opacity-30 blur-4xl"
+          className="absolute rounded-full shadow-lg backdrop-blur-3xl"
           style={{
-            bottom: "-10vh",
-            left: `${Math.random() * 100}%`,
-            background: `radial-gradient(circle, 
-              rgba(255, 100, 0, 0.6) 0%, 
-              rgba(255, 165, 0, 0.4) 50%, 
-              rgba(50, 50, 50, 0) 100%)`, // Fire-to-smoke gradient
+            width: particle.size,
+            height: particle.size,
+            background: `radial-gradient(circle, ${particle.color} 20%, transparent)`,
+            filter: "blur(10px)",
           }}
         />
       ))}

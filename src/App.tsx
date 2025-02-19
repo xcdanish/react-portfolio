@@ -2,6 +2,15 @@ import { useState, useEffect, createContext, Suspense, lazy } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { getThemeColors } from "./Theme/ThemeBox";
 import LoadingSection from "./Animation/LoadingSection";
+import { FireAndFume } from "./Animation/FireAndFume";
+import { CrystalBubbles } from "./Animation/CrystalBubbles";
+import { RisingCrystalBubbles } from "./Animation/RisingCrystalBubbles";
+import { MagicBubbles } from "./Animation/MagicBubbles";
+import { CyberRuneSurge } from "./Animation/CyberRuneSurge";
+import { RunicRiftSurge } from "./Animation/RunicRiftSurge";
+import { MagicCursorTrail } from "./Animation/MagicCursorTrail";
+import { Cursor } from "./Animation/Cursor";
+
 // Function to simulate delay in component loading
 // Correct typing for delayImport function
 const delayImport = <T extends React.ComponentType<any>>(
@@ -88,6 +97,7 @@ function App() {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [themeColor, setThemeColor] = useState("blue");
   const [fontFamily, setFontFamily] = useState("inter");
+  const [selectedAnimation, setSelectedAnimation] = useState("FloatingShapes"); // Default Animation
 
   useEffect(() => {
     document.documentElement.classList.toggle("dark", theme === "dark");
@@ -112,7 +122,8 @@ function App() {
   return (
     <Suspense fallback={<LoadingSection />}>
       <ThemeContext.Provider value={{ themeColor, theme }}>
-        <AnimatePresence mode="wait">
+        <AnimatePresence>
+          <Cursor />
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -126,9 +137,11 @@ function App() {
                 onClose={() => setIsDrawerOpen(false)}
                 theme={theme}
                 themeColor={themeColor}
-                fontFamily={fontFamily}
                 onThemeChange={setTheme}
                 onColorChange={setThemeColor}
+                selectedAnimation={selectedAnimation}
+                onAnimationChange={setSelectedAnimation}
+                fontFamily={fontFamily}
                 onFontChange={setFontFamily}
               />
               <button
@@ -167,7 +180,35 @@ function App() {
                 { Component: Contact, id: "contact" },
               ].map(({ Component, id }) => (
                 <div key={id} className="section-wrapper">
-                  <FloatingShapes themeColor={themeColor} />
+                  {selectedAnimation === "FloatingShapes" && (
+                    <FloatingShapes themeColor={themeColor} />
+                  )}
+                  {selectedAnimation === "RunicRiftSurge" && (
+                    <RunicRiftSurge themeColor={themeColor} />
+                  )}
+                  {selectedAnimation === "CyberRuneSurge" && (
+                    <CyberRuneSurge themeColor={themeColor} />
+                  )}
+                  {selectedAnimation === "MagicBubbles" && (
+                    <MagicBubbles themeColor={themeColor} />
+                  )}
+                  {selectedAnimation === "RisingCrystalBubbles" && (
+                    <RisingCrystalBubbles themeColor={themeColor} />
+                  )}
+                  {selectedAnimation === "CrystalBubbles" && (
+                    <CrystalBubbles themeColor={themeColor} />
+                  )}
+                  {selectedAnimation === "FireAndFume" && (
+                    <FireAndFume themeColor={themeColor} />
+                  )}
+                  {/* <MagicCursorTrail themeColor={themeColor} /> */}
+                  {/* <RunicRiftSurge themeColor={themeColor} /> */}
+                  {/* <CyberRuneSurge themeColor={themeColor} /> */}
+                  {/* <MagicBubbles themeColor={themeColor} /> */}
+                  {/* <RisingCrystalBubbles themeColor={themeColor} /> */}
+                  {/* <CrystalBubbles themeColor={themeColor} /> */}
+                  {/* <FireAndFume themeColor={themeColor} /> */}
+                  {/* <FloatingShapes themeColor={themeColor} /> */}
                   <div className="section-content">
                     <Component themeColor={themeColor} />
                   </div>

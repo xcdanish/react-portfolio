@@ -55,7 +55,7 @@ export const About: React.FC<AboutProps> = ({ themeColor }) => {
               animate={inView ? { opacity: 1, x: 0 } : {}}
               transition={{ duration: 0.6, delay: 0.4 }}
             >
-              <h3 className="text-2xl font-semibold mb-4 text-gray-600 dark:text-gray-300">
+              <h3 className="tracking-widest text-2xl font-semibold mb-4 text-gray-600 dark:text-gray-300">
                 Passionate MERN Stack Developer
               </h3>
               <p className="text-justify text-gray-600 dark:text-gray-300 mb-6">
@@ -95,7 +95,7 @@ export const About: React.FC<AboutProps> = ({ themeColor }) => {
               <p className="text-justify text-gray-600 dark:text-gray-300 mb-8">
                 I'm constantly learning and adapting to new technologies,
                 ensuring that I stay at the forefront of{" "}
-                <strong>web development trends</strong>
+                <strong>web development trends </strong>
                 and best practices.
               </p>
             </motion.div>
