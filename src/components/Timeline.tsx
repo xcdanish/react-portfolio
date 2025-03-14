@@ -8,7 +8,8 @@ const timelineItems = [
   {
     type: "work",
     icon: Briefcase,
-    date: "May 2023 – Jul 2024",
+    date: "May 2023 – Present",
+    // date: "May 2023 – Jul 2024",
     title: "MERN Stack Developer",
     company: "WebMobril Technologies Pvt. Ltd, Indore, India",
     description: `

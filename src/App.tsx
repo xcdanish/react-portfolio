@@ -29,6 +29,15 @@ const FloatingShapes = lazy(() =>
     }))
   )
 );
+
+const CrystalHero = lazy(() =>
+  delayImport(() =>
+    import("./components/CrystalHero").then((module) => ({
+      default: module.CrystalHero,
+    }))
+  )
+);
+
 const Navbar = lazy(() =>
   delayImport(() =>
     import("./components/Navbar").then((module) => ({ default: module.Navbar }))
@@ -172,7 +181,7 @@ function App() {
 
               <Navbar themeColor={themeColor} />
               {[
-                { Component: Hero, id: "hero" },
+                { Component: CrystalHero, id: "hero" },
                 { Component: About, id: "about" },
                 { Component: Skills, id: "skills" },
                 { Component: Timeline, id: "timeline" },
