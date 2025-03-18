@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useState, useEffect, createContext, Suspense, lazy } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { getThemeColors } from "./Theme/ThemeBox";
@@ -8,7 +9,7 @@ import { RisingCrystalBubbles } from "./Animation/RisingCrystalBubbles";
 import { MagicBubbles } from "./Animation/MagicBubbles";
 import { CyberRuneSurge } from "./Animation/CyberRuneSurge";
 import { RunicRiftSurge } from "./Animation/RunicRiftSurge";
-import { MagicCursorTrail } from "./Animation/MagicCursorTrail";
+// import { MagicCursorTrail } from "./Animation/MagicCursorTrail";
 import { Cursor } from "./Animation/Cursor";
 
 // Function to simulate delay in component loading

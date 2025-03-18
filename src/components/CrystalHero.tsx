@@ -71,7 +71,7 @@ const CrystalShard = ({ delay }: { delay: number }) => (
       repeat: Infinity,
       repeatType: "reverse",
     }}
-    className="absolute w-32 h-32 bg-gradient-to-br from-white/10 to-transparent backdrop-blur-sm rounded-lg transform rotate-45 border border-white/20"
+    className="absolute w-32 h-32 bg-gradient-to-br from-white/10 to-transparent backdrop-blur-sm rounded-full transform rotate-45 border border-white/20"
     style={{
       left: `${Math.random() * 100}%`,
       top: `${Math.random() * 100}%`,
