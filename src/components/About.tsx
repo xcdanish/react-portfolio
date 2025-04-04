@@ -42,7 +42,7 @@ export const About: React.FC<AboutProps> = ({ themeColor }) => {
               <div className="relative">
                 <img
                   // src="https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&q=80&w=800"
-                  src="/user.webp"
+                  src="/user.png"
                   alt="Developer"
                   className="rounded-lg shadow-xl"
                 />
